@@ -1,4 +1,4 @@
-export default class PhoneNumberResponsePayoad {
+export default class AvilablePhoneNumberResponsePayoad {
   friendlyName!: string;
   phoneNumber!: string;
   lata!: string;

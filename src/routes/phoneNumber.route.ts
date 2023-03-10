@@ -1,15 +1,15 @@
 import express from 'express';
-import PhoneNumberController from '../controllers/phoneNumber.controller';
+import PhoneNumberManagementController from '../controllers/phoneNumberManagement.controller';
 
 const router = express.Router();
 
 router.get(
   '/:countryCode/:phoneNumberType',
-  new PhoneNumberController().getAvailableNumbers
+  new PhoneNumberManagementController().getAvailableNumbers
 );
 router.post(
   '/:phoneNumber',
-  new PhoneNumberController().provisionPhoneNumber
+  new PhoneNumberManagementController().purchasePhoneNumber
 );
 
 export default router;

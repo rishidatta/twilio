@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import AvailablePhoneNumberModel from '../common/models/phoneNumber.model';
+import AvailablePhoneNumberModel from '../common/models/availablePhoneNumber.model';
 import ProvisionedPhoneNumberModel from '../common/models/provisionedPhoneNumber.model';
 
-export default class PhoneNumberService {
+export default class PhoneNumberManagementService {
   public async getAvailableNumbers(
     countryCode: string,
     phoneNumberType: string
@@ -42,7 +42,7 @@ export default class PhoneNumberService {
     return availablePhoneNumbers;
   }
 
-  public async provisionPhoneNumber(
+  public async purchasePhoneNumber(
     phoneNumber: string
   ): Promise<ProvisionedPhoneNumberModel> {
     const accountSid = String(process.env.ACCOUNT_SID);

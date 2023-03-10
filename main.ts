@@ -1,4 +1,3 @@
-/* eslint-disable import/first */
 require('express-async-errors');
 
 import dotenv from 'dotenv';
@@ -15,9 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/AvailablePhoneNumbers', PhoneNumber);
 app.use('/ProvisionPhoneNumber', PhoneNumber);
-// app.use(new ErrorHandlerMiddleware().handleError);
+app.use(new ErrorHandlerMiddleware().handleError);
 
 app.listen(3000, () => {
-  // eslint-disable-next-line no-console
   console.log('listening on port 3000');
 });

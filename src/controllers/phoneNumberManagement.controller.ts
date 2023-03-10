@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
-import PhoneNumberService from '../services/phoneNumber.service';
-import AvailablePhoneNumberModel from '../common/models/phoneNumber.model';
+import PhoneNumberManagementService from '../services/phoneNumberManagement.service';
+import AvailablePhoneNumberModel from '../common/models/availablePhoneNumber.model';
 import ProvisionedPhoneNumberModel from '../common/models/provisionedPhoneNumber.model';
 
-export default class PhoneNumberController {
+export default class PhoneNumberManagementController {
   public async getAvailableNumbers(req: Request, res: Response) {
     const countryCode = String(req.params.countryCode);
     const phoneNumberType = String(req.params.phoneNumberType);
-    const phoneNumberServiceInstance: PhoneNumberService =
-      new PhoneNumberService();
+    const phoneNumberServiceInstance: PhoneNumberManagementService =
+      new PhoneNumberManagementService();
     const availablePhoneNumbers: AvailablePhoneNumberModel[] =
       await phoneNumberServiceInstance.getAvailableNumbers(
         countryCode,
@@ -17,12 +17,12 @@ export default class PhoneNumberController {
     res.send(availablePhoneNumbers);
   }
 
-  public async provisionPhoneNumber(req: Request, res: Response) {
+  public async purchasePhoneNumber(req: Request, res: Response) {
     const phoneNumber = String(req.params.phoneNumber);
-    const phoneNumberServiceInstance: PhoneNumberService =
-      new PhoneNumberService();
+    const phoneNumberServiceInstance: PhoneNumberManagementService =
+      new PhoneNumberManagementService();
     const provisionedPhoneNumberModel: ProvisionedPhoneNumberModel =
-      await phoneNumberServiceInstance.provisionPhoneNumber(
+      await phoneNumberServiceInstance.purchasePhoneNumber(
         phoneNumber,
       );
     res.send(provisionedPhoneNumberModel);
