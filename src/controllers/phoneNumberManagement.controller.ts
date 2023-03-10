@@ -2,9 +2,10 @@ import { Request, Response } from 'express';
 import PhoneNumberManagementService from '../services/phoneNumberManagement.service';
 import AvailablePhoneNumberModel from '../common/models/availablePhoneNumber.model';
 import ProvisionedPhoneNumberModel from '../common/models/provisionedPhoneNumber.model';
+import ReceivedMessageModel from '../common/models/receivedMessage.model';
 
 export default class PhoneNumberManagementController {
-  public async getAvailableNumbers(req: Request, res: Response) {
+  public async getAvailableNumbers(req: Request, res: Response): Promise<void> {
     const countryCode = String(req.params.countryCode);
     const phoneNumberType = String(req.params.phoneNumberType);
     const phoneNumberServiceInstance: PhoneNumberManagementService =
@@ -17,7 +18,7 @@ export default class PhoneNumberManagementController {
     res.send(availablePhoneNumbers);
   }
 
-  public async purchasePhoneNumber(req: Request, res: Response) {
+  public async purchasePhoneNumber(req: Request, res: Response): Promise<void> {
     const phoneNumber = String(req.params.phoneNumber);
     const phoneNumberServiceInstance: PhoneNumberManagementService =
       new PhoneNumberManagementService();
@@ -26,5 +27,14 @@ export default class PhoneNumberManagementController {
         phoneNumber,
       );
     res.send(provisionedPhoneNumberModel);
+  }
+
+  public receiveMessageWebhook(req: Request, res: Response): void {
+    const data: any = req.body;
+    const phoneNumberServiceInstance: PhoneNumberManagementService =
+      new PhoneNumberManagementService();
+    const receivedMessageModel: ReceivedMessageModel =
+    phoneNumberServiceInstance.processReceivedMessage(data);
+    console.log(receivedMessageModel);
   }
 }

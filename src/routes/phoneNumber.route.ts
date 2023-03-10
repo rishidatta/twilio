@@ -12,4 +12,9 @@ router.post(
   new PhoneNumberManagementController().purchasePhoneNumber
 );
 
+router.post(
+  '/',
+  new PhoneNumberManagementController().receiveMessageWebhook
+);
+
 export default router;

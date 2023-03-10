@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/AvailablePhoneNumbers', PhoneNumber);
 app.use('/ProvisionPhoneNumber', PhoneNumber);
-app.use(new ErrorHandlerMiddleware().handleError);
+app.use('/Messages', PhoneNumber);
+// app.use(new ErrorHandlerMiddleware().handleError);
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
