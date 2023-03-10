@@ -28,13 +28,4 @@ export default class PhoneNumberManagementController {
       );
     res.send(provisionedPhoneNumberModel);
   }
-
-  public receiveMessageWebhook(req: Request, res: Response): void {
-    const data: any = req.body;
-    const phoneNumberServiceInstance: PhoneNumberManagementService =
-      new PhoneNumberManagementService();
-    const receivedMessageModel: ReceivedMessageModel =
-    phoneNumberServiceInstance.processReceivedMessage(data);
-    console.log(receivedMessageModel);
-  }
 }
