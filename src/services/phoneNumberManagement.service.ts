@@ -49,7 +49,11 @@ export default class PhoneNumberManagementService {
     const accountSecret = String(process.env.ACCOUNT_SECRET);
     const client = require('twilio')(accountSid, accountSecret);
     const response = await client.incomingPhoneNumbers
-      .create({ phoneNumber })
+      .create({
+        phoneNumber,
+        smsUrl:
+          'https://40ef-2405-201-5004-ca-66dc-d0ce-4f9-1073.in.ngrok.io/messages/webhook',
+      })
       .then((incoming_phone_number: any) => incoming_phone_number);
     const provisionedPhoneNumberModel: ProvisionedPhoneNumberModel =
       new ProvisionedPhoneNumberModel(
