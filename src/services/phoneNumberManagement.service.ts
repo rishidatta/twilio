@@ -52,7 +52,7 @@ export default class PhoneNumberManagementService {
       .create({
         phoneNumber,
         smsUrl:
-          'https://40ef-2405-201-5004-ca-66dc-d0ce-4f9-1073.in.ngrok.io/messages/webhook',
+          `${process.env.API_BASE_URL}/messages/webhook`,
       })
       .then((incoming_phone_number: any) => incoming_phone_number);
     const provisionedPhoneNumberModel: ProvisionedPhoneNumberModel =
