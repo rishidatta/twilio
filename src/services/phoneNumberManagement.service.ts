@@ -52,7 +52,7 @@ export default class PhoneNumberManagementService {
       .create({
         phoneNumber,
         smsUrl:
-          `${process.env.API_BASE_URL}/messages/webhook`,
+          `${String(process.env.API_BASE_URL)}/messages/webhook`,
       })
       .then((incoming_phone_number: any) => incoming_phone_number);
     const provisionedPhoneNumberModel: ProvisionedPhoneNumberModel =
